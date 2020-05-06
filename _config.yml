@@ -22,12 +22,17 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
 github_username:  snoringpig
 
+#<link rel="stylesheet" href="/assets/css/style.scss">
+
 # Build settings
 markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
-
+pattern_styles:                         ## (list) add style locations here
+  - "assets/css/"
+include:
+  - "assets/img/"
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

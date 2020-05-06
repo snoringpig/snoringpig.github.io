@@ -1,0 +1,27 @@
+---
+layout: post
+title:  'Well...'
+date:   2020-02-17 19:11:02 -0500
+categories: jekyll update
+---
+This seems pretty manual!
+
+<kbd>
+	<a href="https://www.google.com">
+		<img src="/assets/img/baby.jpg" style="border-radius: 10%" height="150px" width="150px"/>
+	</a>
+</kbd>
+
+<kbd>
+	<a href="https://www.google.com">
+		<img src="/assets/img/baby.jpg" style="border-radius: 10%" height="150px" width="150px"/>
+	</a>
+</kbd>
+
+![](/assets/img/baby.jpg){:class="icon"}
+
+Left                       |  Right
+:-------------------------:|:-------------------------:
+![](/assets/img/baby.jpg)  |  ![](/assets/img/baby.jpg)
+
+Grrrrrhhhhh, why can't I add style to this? How do I link the style.scss file to here???????
