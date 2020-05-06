@@ -27,8 +27,8 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
-sass:
-  sass_dir: /assets
+#sass:
+#  sass_dir: /assets
 include:
   - "assets/img/"
 # Exclude from processing.

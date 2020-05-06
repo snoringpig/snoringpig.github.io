@@ -6,19 +6,25 @@ categories: jekyll update
 ---
 This seems pretty manual!
 
-<kbd>
-	<a href="https://www.google.com">
-		<img src="/assets/img/baby.jpg" style="border-radius: 10%" height="150px" width="150px"/>
-	</a>
-</kbd>
-
-<kbd>
-	<a href="https://www.google.com">
-		<img src="/assets/img/baby.jpg" style="border-radius: 10%" height="150px" width="150px"/>
-	</a>
-</kbd>
-
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+[![](/assets/img/baby.jpg){:class="icon"}](/about/)
+&nbsp;
 ![](/assets/img/baby.jpg){:class="icon"}
+&nbsp;
+![](/assets/img/baby.jpg){:class="icon"}
+&nbsp;
+![](/assets/img/baby.jpg){:class="icon"}
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 Left                       |  Right
 :-------------------------:|:-------------------------:
