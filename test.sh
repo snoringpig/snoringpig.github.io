@@ -14,7 +14,7 @@ do
 done
 
 i=0
-for f in /Users/HPH/Documents/Git/snoringpig.github.io/assets/img/*
+for f in $(pwd)/assets/img/*
 do
 	if [ -f "$f" ]; then
     echo "  - name: $(basename $f)" >> "${output}$((1+$i%4)).txt"
