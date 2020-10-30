@@ -4,30 +4,11 @@ title:  'Well...'
 date:   2020-02-17 19:11:02 -0500
 categories: jekyll update
 ---
-This seems pretty manual!
 
+<!--[![](/assets/img/IMG_1500.JPG){:class="icon"}](/about/)-->
+{% comment %}
+{% for item in site.data.images %}
+	<img src="{{ item.image }}#thumbnail">
+{% endfor %}
+{% endcomment %}
 &nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-[![](/assets/img/baby.jpg){:class="icon"}](/about/)
-&nbsp;
-![](/assets/img/baby.jpg){:class="icon"}
-&nbsp;
-![](/assets/img/baby.jpg){:class="icon"}
-&nbsp;
-![](/assets/img/baby.jpg){:class="icon"}
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-
-Left                       |  Right
-:-------------------------:|:-------------------------:
-![](/assets/img/baby.jpg)  |  ![](/assets/img/baby.jpg)
-
-Grrrrrhhhhh, why can't I add style to this? How do I link the style.scss file to here???????
