@@ -1,14 +1,6 @@
 ---
 layout: post
-title:  'Well...'
+title:  'Test'
 date:   2020-02-17 19:11:02 -0500
 categories: jekyll update
 ---
-
-<!--[![](/assets/img/IMG_1500.JPG){:class="icon"}](/about/)-->
-{% comment %}
-{% for item in site.data.images %}
-	<img src="{{ item.image }}#thumbnail">
-{% endfor %}
-{% endcomment %}
-&nbsp;
