@@ -7,7 +7,7 @@ cols:
   - name: 20140725_003159.jpg
   - name: 20160511_154534.jpg
   - name: 20170113_105824808.jpg
-  - name: 20181231_234138.jpg
+  - name: 20181231_234138_v.jpg
   - name: 20190225_133702.jpg
   - name: 20190305_101234.jpg
   - name: 20190505_103226.jpg
@@ -30,7 +30,7 @@ cols:
   - name: 20190629_152534.jpg
   - name: 20190926_092157.jpg
   - name: 20200124_134952.jpg
-  - name: 20200910_IMG_1662.JPG
+  - name: 20200910_IMG_1662_v.JPG
 - id: col_3
   images:
   - name: 20120616_XN8K0337.JPG
