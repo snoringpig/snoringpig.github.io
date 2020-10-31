@@ -8,7 +8,7 @@ rm -f $output_txt
 for j in {1..4};
 do
 	output_j_txt="${output}$j.txt"
-	rm -f $output_j
+	rm -f $output_j_txt
 	echo "- id: col_$j" >> $output_j_txt
 	echo "  images:" >> $output_j_txt
 done
