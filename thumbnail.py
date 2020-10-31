@@ -2,7 +2,7 @@ import PIL
 import os
 import os.path
 import math
-from PIL import Image, ExifTags
+from PIL import Image
 
 debug = False
 scale = 0.2
