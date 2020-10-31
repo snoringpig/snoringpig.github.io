@@ -1,7 +1,7 @@
 cols:
 - id: col_1
   images:
-  - name: 20120117_IMG_0597_CanonPowerShot.JPG
+  - name: 20120117_IMG_0597.JPG
   - name: 20130517_IMG_4414.JPG
   - name: 20131216_IMG_6757.JPG
   - name: 20140725_003159.jpg
@@ -35,7 +35,7 @@ cols:
   images:
   - name: 20120616_XN8K0337.JPG
   - name: 20130903_09.48.57.jpg
-  - name: 20140327_IMG_7287_CanonT2i.JPG
+  - name: 20140327_IMG_7287.JPG
   - name: 20140915_025614.jpg
   - name: 20161205_100310.jpg
   - name: 20180924_015515_vHDR_Auto.jpg
@@ -50,7 +50,7 @@ cols:
   images:
   - name: 20120918_IMG_7752.JPG
   - name: 20131113_IMG_6625.JPG
-  - name: 20140626_IMG_7533_CanonT2i.JPG
+  - name: 20140626_IMG_7533.JPG
   - name: 20141124_103858.jpg
   - name: 20170108_121810.jpg
   - name: 20181005_172230_vHDR_Auto.jpg

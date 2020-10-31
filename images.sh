@@ -14,7 +14,7 @@ do
 done
 
 i=0
-for f in $(pwd)/assets/img/*
+for f in $(pwd)/assets/img/original/*
 do
 	if [ -f "$f" ]; then
     echo "  - name: $(basename $f)" >> "${output}$((1+$i%4)).txt"

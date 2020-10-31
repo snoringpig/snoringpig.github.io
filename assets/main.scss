@@ -3,21 +3,6 @@
 
 @import "{{ site.theme }}";
 
-.icon {
-  border-radius: 10%;
-  height:150px;
-  width:150px;
-}
-
-img[src*="#thumbnail"] {
-	 border-radius: 5%;
-   width:23%;
-   height:auto;
-   padding: 0.5%;
-   cursor: pointer;
-   transition: 0.3s;
-}
-
 * {
   box-sizing: border-box;
 }
