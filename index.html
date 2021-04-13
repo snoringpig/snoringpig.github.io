@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" integrity="sha384-Cqd8ihRLum0CCg8rz0hYKPoLZ3uw+gES2rXQXycqnL5pgVQIflxAUDS7ZSjITLb5" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" integrity="sha384-1Or6BdeNQb0ezrmtGeqQHFpppNd7a/gw29xeiSikBbsb44xu3uAo8c7FwbF5jhbd" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"></script>
+
+    <script>
+        function ready() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }
+                ]
+            });
+        }
+    </script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+		<script src="https://cdn.bootcss.com/p5.js/0.9.0/addons/p5.dom.js"></script>
+
+		<script src="js/shared.js"></script>
+		<script src="js/stack.js"></script>
+		<script src="js/tree.js"></script>
+		<style>
+			body {
+				padding: 5%;
+				margin: 0;
+				font-family: Georgia,Garamond,serif,"Kaiti","STKaiti";
+				/*font-family: sans-serif,"Heiti", "STHeiti";*/
+			}
+			.center {
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			}
+		</style>
+	</head>
+	<body onload="ready()">
+		<h1>做个实验</h1>
+
+		Das Folgende gilt für ein Hamiltonianer $H$
+		$$
+			\iota_{X_H}\omega = dH,
+		$$
+		wobei $X_H :=
+		\sum_{i=1}^{n}
+		\left(
+			\frac{\partial H}{\partial p_i}\frac{\partial}{\partial q_i}
+			-
+			\frac{\partial H}{\partial q_i}\frac{\partial}{\partial p_i}
+		\right)$.
+
+		<br>
+
+    For $m > 2$, $SL(2,\mathbb{Z})[m]$ acts freely on the Farey tree (<b>not</b> as followed).
+
+		<div id="tree" class="center"></div>
+
+	</body>
+</html>
