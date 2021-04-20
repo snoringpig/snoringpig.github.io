@@ -15,3 +15,18 @@ class Stack {
     this.data.pop();
   }
 }
+
+class Queue {
+  constructor() {
+    this.data = [];
+  }
+  push(element) {
+    this.data.push(element);
+  }
+  peek() {
+    return this.data.length == 0 ? undefined : this.data[0];
+  }
+  dequeue() {
+    this.data.shift();
+  }
+}

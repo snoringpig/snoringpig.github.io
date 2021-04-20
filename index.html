@@ -24,15 +24,19 @@
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
 		<script src="https://cdn.bootcss.com/p5.js/0.9.0/addons/p5.dom.js"></script>
+		<script src="https://unpkg.com/mathjs@9.3.2/lib/browser/math.js"></script>
 
 		<script src="js/shared.js"></script>
 		<script src="js/stack.js"></script>
+		<script src="js/farey.js"></script>
 		<script src="js/tree.js"></script>
+		<script src="js/unit_speed.js"></script>
+
 		<style>
 			body {
 				padding: 5%;
 				margin: 0;
-				font-family: Georgia,Garamond,serif,"Kaiti","STKaiti";
+				font-family: Garamond,Georgia,serif,"Kaiti","STKaiti";
 				/*font-family: sans-serif,"Heiti", "STHeiti";*/
 			}
 			.center {
@@ -43,25 +47,19 @@
 		</style>
 	</head>
 	<body onload="ready()">
-		<h1>做个实验</h1>
-
-		Das Folgende gilt für ein Hamiltonianer $H$
-		$$
-			\iota_{X_H}\omega = dH,
-		$$
-		wobei $X_H :=
-		\sum_{i=1}^{n}
-		\left(
-			\frac{\partial H}{\partial p_i}\frac{\partial}{\partial q_i}
-			-
-			\frac{\partial H}{\partial q_i}\frac{\partial}{\partial p_i}
-		\right)$.
-
+		<div id="farey" class="center"></div>
 		<br>
-
-    For $m > 2$, $SL(2,\mathbb{Z})[m]$ acts freely on the Farey tree (<b>not</b> as followed).
-
-		<div id="tree" class="center"></div>
-
+		<h3 class="center">万物生</h3>
+		<div class="center">
+			<div id="tree0"></div>
+			&nbsp;
+			<div id="tree1"></div>
+			&nbsp;
+			<div id="unit_speed"></div>
+			&nbsp;
+			<div id="tree2"></div>
+			&nbsp;
+			<div id="tree3"></div>
+		</div>
 	</body>
 </html>

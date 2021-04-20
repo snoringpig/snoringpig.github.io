@@ -1,118 +1,136 @@
-const tree = p => {
-  const demo = [
-    {
-      w: "F+F+F+F",
-      p: {
-        'F': "F-F+F+F-F"
-      },
-      d: 90,
-      n: 5,
-      z: 3
+const demos = [
+  {
+    w: "F+F+F+F",
+    p: {
+      'F': "F-F+F+F-F"
     },
-    {
-      w: "F",
-      p: {
-        'F': "F[+F]F[-F]F"
-      },
-      d: 25.7,
-      n: 2,
-      z: 3
+    d: 90,
+    n: 5,
+    z: 3,
+    rootX: 0.3,
+    rootY: 0.225,
+    scale: 0.4
+  },
+  {
+    w: "F",
+    p: {
+      'F': "F[+F]F[-F]F"
     },
-    {
-      w: "X",
-      p: {
-        'X': "F-[[X]+X]+F[+FX]-X",
-        'F': "FF"
-      },
-      d: 22.5,
-      n: 2,
-      z: 3
+    d: 25.7,
+    n: 2,
+    z: 3,
+    rootX: 0.25,
+    rootY: 0.125,
+    scale: 0.8
+  },
+  { // TODO: bug?
+    w: "X",
+    p: {
+      'X': "F-[[X]+X]+F[+FX]-X",
+      'F': "FF"
     },
-    {
-      w: "F",
-      p: {
-        'F': "FF+[+F-F-F]-[-F+F+F]"
-      },
-      d: 22.5,
-      n: 4,
-      z: 3
+    d: 22.5,
+    n: 2,
+    z: 3,
+    rootX: 0.25,
+    rootY: 0.125,
+    scale: 0.8
+  },
+  {
+    w: "F",
+    p: {
+      'F': "FF+[+F-F-F]-[-F+F+F]"
     },
-    {
-      w: "X",
-      p : {
-        'X': "F[+X]F[-X]+X",
-        'F': "FF"
-      },
-      d: 20,
-      n: 7,
-      z: 2.2
+    d: 22.5,
+    n: 4,
+    z: 3,
+    rootX: 0.25,
+    rootY: 0.125,
+    scale: 0.8
+  },
+  {
+    w: "X",
+    p : {
+      'X': "F[+X]F[-X]+X",
+      'F': "FF"
     },
-    {
-      w: "F",
-      p: {
-        'F': "EE[-F][+F]",
-        'E': "EE"
-      },
-      d: 45,
-      n: 5,
-      z: 2.3
+    d: 20,
+    n: 7,
+    z: 2.2,
+    rootX: 0.25,
+    rootY: 0.125,
+    scale: 0.8
+  },
+  {
+    w: "F",
+    p: {
+      'F': "EE[-F][+F]",
+      'E': "EE"
     },
-    {
-      w: "X",
-      p: {
-        'X': "F+[[X]-X]-F[-FX]+X",
-        'F': "FF"
-      },
-      d: 25,
-      n: 7,
-      z: 2.3
-    }
-  ];
-  const which = 4;
+    d: 45,
+    n: 5,
+    z: 2.3,
+    rootX: 0.5,
+    rootY: 0.125,
+    scale: 0.8
+  },
+  {
+    w: "X",
+    p: {
+      'X': "F+[[X]-X]-F[-FX]+X",
+      'F': "FF"
+    },
+    d: 25,
+    n: 7,
+    z: 2.3,
+    rootX: 0.25,
+    rootY: 0.125,
+    scale: 0.8
+  }
+];
 
+const tree = p => {
   let d_rad;
-  const zoom_advanced = 1; // actually, this is not needed.. "F -> FF" is sort of doing this, just that 'zoom_advanced' might have more control (not just 1/n-scaling)
+  const scale_diagram = 0.18;
 
   let l;
 
   let curDir = 0;
-  let curX = 200;
-  let curY = 350;
+  let curX, curY; // should depend on tree
 
   const scale_padding = 0.05;
-  const scale_diagram = 0.8;
   let step;
   let canvas_x_min, canvas_y_min, canvas_x_max, canvas_y_max;
 
   p.setup = function() {
-    p.createCanvas(400, 400);
-    // background(220);
-    p.background('#222222');
-    p.stroke('rgba(0,255,0,0.5)');
+    p.createCanvas(scale_diagram*p.windowWidth, scale_diagram*p.windowWidth);
+    // p.background('#222222');
+    //p.stroke('rgba(0,255,0,0.5)');
 
     canvas_x_min = p.width * scale_padding;
     canvas_x_max = p.width * (1-scale_padding);
     canvas_y_min = p.height * (1-scale_padding);
     canvas_y_max = p.height * scale_padding;
 
-    const which_demo = demo[which];
+    const demo = demos[p.which];
+    curX = demo.rootX * p.width;
+    curY = (1 - demo.rootY) * p.height;
 
     // TODO: a size(n) function for each tree
-    step = scale_diagram / p.pow(which_demo.z,which_demo.n) *
+    step = demo.scale / p.pow(demo.z,demo.n) *
       p.min(p.abs(canvas_x_max - canvas_x_min),
          p.abs(canvas_y_max - canvas_y_min));
 
-    l = L(which_demo.n,which_demo.w,which_demo.p);
-    d_rad = which_demo.d * PI/180;
+    l = L(demo.n,demo.w,demo.p);
+    d_rad = demo.d * PI/180;
     t=0;
   }
 
   let t = 0;
   let stack = new Stack();
   p.draw = function() {
-    // console.log(t + ":" + curX + "," + curY + "," + curDir);
     if (t >= l.length) {
-      noLoop();
+      p.noLoop();
     }
     switch(l[t]) {
       case 'F':
@@ -178,4 +196,11 @@ const tree = p => {
   }
 }
 
-new p5(tree, 'tree');
+var tree0 = new p5(tree, 'tree0');
+tree0.which = 0;
+var tree1 = new p5(tree, 'tree1');
+tree1.which = 4;
+var tree2 = new p5(tree, 'tree2');
+tree2.which = 5;
+var tree3 = new p5(tree, 'tree3');
+tree3.which = 3;
