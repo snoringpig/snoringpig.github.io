@@ -4,23 +4,67 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" integrity="sha384-Cqd8ihRLum0CCg8rz0hYKPoLZ3uw+gES2rXQXycqnL5pgVQIflxAUDS7ZSjITLb5" crossorigin="anonymous">
-
     <!-- The loading of KaTeX is deferred to speed up page rendering -->
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" integrity="sha384-1Or6BdeNQb0ezrmtGeqQHFpppNd7a/gw29xeiSikBbsb44xu3uAo8c7FwbF5jhbd" crossorigin="anonymous"></script>
-
     <!-- To automatically render math in text elements, include the auto-render extension: -->
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"></script>
 
-    <script>
-        function ready() {
-            renderMathInElement(document.body, {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false }
-                ]
-            });
-        }
-    </script>
+		<script src="https://cdn.jsdelivr.net/npm/gl-matrix@3.0.0/gl-matrix-min.js"></script>
+		<script src="https://twgljs.org/dist/4.x/twgl-full.min.js"></script>
+
+		<script src="js/util.js"></script>
+		<script src="js/consts.js"></script>
+		<script src="js/colors.js"></script>
+		<script src="js/script.js"></script>
+		<script id="vs" type="notjs">
+	        attribute vec4 aVertexPosition;
+	        attribute vec2 aTextureCoord;
+	        attribute vec3 aVertexNormal;
+
+	        uniform vec3 uViewPos;
+	        uniform vec3 uLightPos;
+	        uniform mat4 uModelMatrix;
+	        uniform mat4 uNormalMatrix;
+	        uniform mat4 uMatrix;
+
+	        varying highp vec2 vTextureCoord;
+	        varying highp vec3 vLighting;
+
+	        void main() {
+	            gl_Position              = uMatrix * aVertexPosition;
+	            vTextureCoord            = aTextureCoord;
+
+	            highp float ambientStrength = 0.3;
+	            highp vec3 ambientLightColor = vec3(1, 1, 1);
+	            highp vec3 ambientLight = ambientStrength * ambientLightColor;
+
+	            highp vec3 lightColor = vec3(1, 1, 1);
+
+	            highp vec3 lightDir = normalize(uLightPos - (uModelMatrix * aVertexPosition).xyz); // in world space
+	            highp vec4 transformedNormal = uNormalMatrix * vec4(aVertexNormal, 0); // in world space
+	            highp float directional = max(dot(normalize(transformedNormal.xyz), lightDir), 0.0);
+	            highp vec3 diffuseLight = directional * lightColor;
+
+	            highp float specularStrength = 0.5;
+	            highp float shininess = 32.0;
+	            highp vec3 viewDir = normalize(uViewPos - (uModelMatrix * aVertexPosition).xyz); // in world space
+	            highp vec3 reflectDir = reflect(-lightDir, normalize(transformedNormal.xyz));
+	            highp float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
+	            highp vec3 specularLight = specularStrength * spec * lightColor;
+
+	            vLighting = ambientLight + diffuseLight + specularLight;
+	        }
+		</script>
+		<script id="fs" type="notjs">
+	        varying highp vec2 vTextureCoord;
+	        varying highp vec3 vLighting;
+	        uniform sampler2D uSampler;
+
+	        void main() {
+	            highp vec4 texelColor = texture2D(uSampler, vTextureCoord);
+	            gl_FragColor = vec4(texelColor.rgb * vLighting, texelColor.a);
+	        }
+		</script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
 		<script src="https://cdn.bootcss.com/p5.js/0.9.0/addons/p5.dom.js"></script>
@@ -32,12 +76,15 @@
 		<script src="js/tree.js"></script>
 		<script src="js/unit_speed.js"></script>
 
+		<script>
+			window.onload = main;
+		</script>
+
 		<style>
 			body {
 				padding: 5%;
 				margin: 0;
 				font-family: Garamond,Georgia,serif,"Kaiti","STKaiti";
-				/*font-family: sans-serif,"Heiti", "STHeiti";*/
 			}
 			.center {
 			  display: flex;
@@ -46,7 +93,11 @@
 			}
 		</style>
 	</head>
-	<body onload="ready()">
+	<body>
+		<div class="center">
+			<canvas id="c1"></canvas>
+			<canvas id="c2"></canvas>
+		</div>
 		<div id="farey" class="center"></div>
 		<br>
 		<h3 class="center">万物生</h3>
@@ -61,5 +112,6 @@
 			&nbsp;
 			<div id="tree3"></div>
 		</div>
+		$$z^{z^{z^{z^{z^{z}}}}}$$
 	</body>
 </html>
