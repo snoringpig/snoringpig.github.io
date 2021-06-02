@@ -64,10 +64,6 @@ const farey = p => {
 
     // TODO: don't hardcode!!!
     const geodesics = [
-      {o: 3, r: 1},
-      {o: 1, r: 1},
-      {o: -1, r: 1},
-      {o: -3, r: 1},
       {o: -5/2, r: 1/2},
       {o: -3/2, r: 1/2},
       {o: -1/2, r: 1/2},
